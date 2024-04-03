@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="role"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="true"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="role"/>
+			<item value="name"/>
+			<item value="category"/>
+			<item value="form"/>
+			<item value="fomr"/>
+			<item value="from"/>
+			<item value="status"/>
+			<item value="delete"/>
+			<item value="user"/>
+			<item value="secureConfigurer"/>
+			<item value="totalCartPrice"/>
+			<item value="totalCartProce"/>
+			<item value="searchByCategory"/>
+			<item value="Category"/>
+			<item value="cart-view"/>
+		</list>
+		<list key="replacehistory">
+			<item value="loginedUser"/>
+			<item value="Publisher"/>
+			<item value="publisher"/>
+			<item value=""/>
+			<item value="tbl_book"/>
+			<item value="product"/>
+			<item value="category"/>
+			<item value="Category"/>
+			<item value="&quot;${classpath}/frontend/images/"/>
+			<item value="&quot;${classpath}/backend/"/>
+			<item value="&quot;${classpath}/backend/img/"/>
+			<item value="&quot;${classpath}/backend/css/"/>
+			<item value="&quot;${classpath}/frontend/"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="362"/>
+		<item key="DIALOG_Y_ORIGIN" value="237"/>
+		<item key="DIALOG_WIDTH" value="336"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>
