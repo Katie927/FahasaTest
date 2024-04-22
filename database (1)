@@ -1,0 +1,348 @@
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: bookstoretest
+-- ------------------------------------------------------
+-- Server version	8.0.35
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tbl_book`
+--
+
+DROP TABLE IF EXISTS `tbl_book`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_book` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category_id` int NOT NULL,
+  `name` varchar(300) COLLATE utf8mb4_bin NOT NULL,
+  `avatar` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL,
+  `price` decimal(15,2) DEFAULT NULL,
+  `sale_price` decimal(15,2) DEFAULT NULL,
+  `in_stock` int DEFAULT '0',
+  `create_by` int DEFAULT NULL,
+  `update_by` int DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `is_hot` tinyint DEFAULT NULL,
+  `short_description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `detail_description` longtext COLLATE utf8mb4_bin,
+  `seo` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL,
+  `publish_by` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_category_id_idx` (`category_id`),
+  KEY `fk_user_create_product_idx` (`create_by`),
+  KEY `fk_user_update_product_idx` (`update_by`),
+  KEY `fk_publisher_idx` (`publish_by`),
+  CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `tbl_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_publisher` FOREIGN KEY (`publish_by`) REFERENCES `tbl_publish` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_create_product` FOREIGN KEY (`create_by`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_update_product` FOREIGN KEY (`update_by`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_book`
+--
+
+LOCK TABLES `tbl_book` WRITE;
+/*!40000 ALTER TABLE `tbl_book` DISABLE KEYS */;
+INSERT INTO `tbl_book` VALUES (1,1,'Bí mật của Naoko','Product/Avatar/image_195509_1_9655.jpg',91800.00,22222.00,0,1,1,NULL,'2024-02-25 00:00:00',0,1,'asdas','dasdasd',NULL,2),(2,1,' Có Hai Con Mèo Ngồi Bên Cửa Sổ (Tái Bản 2023)','Product/Avatar/copy_25_nxbtre_full_16462018_114633.jpg',116000.00,14000.00,0,1,1,NULL,'2024-02-25 00:00:00',1,1,'','',NULL,1),(3,1,'Thư viện nửa đêm','Product/Avatar/thu-vien-nua-dem-01.jpg',97000.00,80000.00,0,1,1,NULL,'2024-02-29 00:00:00',1,1,'','',NULL,1),(4,3,'Tại sao em ít nói thế','Product/Avatar/image_195509_1_34374.jpg',120000.00,108000.00,0,1,1,NULL,'2024-02-29 00:00:00',1,1,'','',NULL,1),(5,1,'Cây cam ngọt của tôi','Product/Avatar/image_217480.jpg',11111.00,11011.00,1,1,1,NULL,'2024-02-29 00:00:00',1,0,'','',NULL,1),(8,6,'Khi Khách Hàng Lên Tiếng','Product/Avatar/8935086840054.jpg',170000.00,130000.00,42,2,1,'2024-01-31 00:00:00','2024-02-29 00:00:00',1,1,'','',NULL,1),(9,1,'Thám Tử Lừng Danh Conan - Tiểu Thuyết - Tàu Ngầm Sắt Màu Đen','Product/Avatar/bia_conan_tau-ngam-sat-den.jpg',70000.00,54000.00,1,1,1,'2024-02-07 00:00:00','2024-02-29 00:00:00',1,0,'','',NULL,3),(10,5,'Tôi Thấy Hoa Vàng Trên Cỏ Xanh (Tái Bản 2023)','Product/Avatar/nna-hvtcx.jpg',11224.00,12242.00,2,1,1,'2024-02-11 00:00:00','2024-02-29 00:00:00',0,1,'','',NULL,1),(11,5,' Mắt Biếc (Tái Bản 2022)','Product/Avatar/nxbtre_full_06402022_014041.jpg',224242.00,242422.00,2,1,1,'2024-02-12 00:00:00','2024-02-29 00:00:00',1,0,'vvvv','vvvvvvvv',NULL,1),(12,1,'Có Hai Con Mèo Ngồi Bên Cửa Số - Phiên Bản Đặc Biệt','Product/Avatar/8934974178378.jpg',78.00,7687.00,8678,1,1,'2024-02-12 00:00:00','2024-02-25 00:00:00',1,0,'oipo','iopio',NULL,1),(13,1,'Ghi Chép Pháp Y - Tập 2 - Khi Tử Thi Biết Nói','Product/Avatar/b_a-tr_c-gcpy-2-1.jpg',123.00,3123.00,2,1,1,'2024-02-23 00:00:00','2024-02-25 00:00:00',1,0,'asdasd','dasd',NULL,4);
+/*!40000 ALTER TABLE `tbl_book` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_category`
+--
+
+DROP TABLE IF EXISTS `tbl_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_category` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(300) COLLATE utf8mb4_bin NOT NULL,
+  `create_by` int DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `seo` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL,
+  `description` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL,
+  `update_by` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_create_category_idx` (`create_by`),
+  KEY `fk_user_update_category_idx` (`update_by`),
+  CONSTRAINT `fk_user_create_category` FOREIGN KEY (`create_by`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_update_category` FOREIGN KEY (`update_by`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_category`
+--
+
+LOCK TABLES `tbl_category` WRITE;
+/*!40000 ALTER TABLE `tbl_category` DISABLE KEYS */;
+INSERT INTO `tbl_category` VALUES (1,'Tiểu thuyết',1,NULL,'2024-02-25 00:00:00',1,NULL,'',1),(2,'manga',NULL,NULL,NULL,0,NULL,NULL,NULL),(3,'Tâm lý',1,NULL,'2024-02-25 00:00:00',1,NULL,'',1),(5,'Văn học',1,'2024-02-05 00:00:00','2024-02-25 00:00:00',1,NULL,'',1),(6,'Kinh Tế',1,'2024-02-05 00:00:00','2024-02-25 00:00:00',1,NULL,'a',1),(10,'Sách Tham Khảo',1,'2024-02-06 00:00:00','2024-02-25 00:00:00',1,NULL,'cccc',1);
+/*!40000 ALTER TABLE `tbl_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_product_image`
+--
+
+DROP TABLE IF EXISTS `tbl_product_image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_product_image` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int NOT NULL,
+  `title` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL,
+  `path` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL,
+  `create_by` int DEFAULT NULL,
+  `update_by` int DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_product_id_idx` (`product_id`),
+  CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `tbl_book` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_product_image`
+--
+
+LOCK TABLES `tbl_product_image` WRITE;
+/*!40000 ALTER TABLE `tbl_product_image` DISABLE KEYS */;
+INSERT INTO `tbl_product_image` VALUES (1,2,'by_mat_cua_naoko_tb_2018_8_2018_07_05_14_05_43.jpg','Product/Image/by_mat_cua_naoko_tb_2018_8_2018_07_05_14_05_43.jpg',NULL,NULL,NULL,'2024-02-11 16:28:35',1),(2,1,'by_mat_cua_naoko_tb_2018_10_2018_07_05_14_05_43.jpg','Product/Image/by_mat_cua_naoko_tb_2018_10_2018_07_05_14_05_43.jpg',NULL,NULL,NULL,'2024-02-12 23:29:48',1),(3,1,'by_mat_cua_naoko_tb_2018_8_2018_07_05_14_05_43.jpg','Product/Image/by_mat_cua_naoko_tb_2018_8_2018_07_05_14_05_43.jpg',NULL,NULL,NULL,'2024-02-12 23:29:48',1),(4,1,'by_mat_cua_naoko_tb_2018_2_2018_07_05_14_05_43.jpg','Product/Image/by_mat_cua_naoko_tb_2018_2_2018_07_05_14_05_43.jpg',NULL,NULL,NULL,'2024-02-12 23:29:48',1);
+/*!40000 ALTER TABLE `tbl_product_image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_publish`
+--
+
+DROP TABLE IF EXISTS `tbl_publish`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_publish` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) COLLATE utf8mb4_bin NOT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `create_by` int DEFAULT NULL,
+  `update_by` int DEFAULT NULL,
+  `description` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_create_publisher_idx` (`create_by`),
+  KEY `fk_user_update_publisher_idx` (`update_by`),
+  CONSTRAINT `fk_user_create_publisher` FOREIGN KEY (`create_by`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_update_publisher` FOREIGN KEY (`update_by`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_publish`
+--
+
+LOCK TABLES `tbl_publish` WRITE;
+/*!40000 ALTER TABLE `tbl_publish` DISABLE KEYS */;
+INSERT INTO `tbl_publish` VALUES (1,'Phụ Nữ',NULL,'2024-02-28 00:00:00',1,1,1,''),(2,'Văn Học',NULL,'2024-02-25 00:00:00',1,1,1,''),(3,'Kim Đồng','2024-02-25 00:00:00',NULL,1,1,1,''),(4,'A-Z Việt Nam','2024-02-25 00:00:00',NULL,1,1,1,'');
+/*!40000 ALTER TABLE `tbl_publish` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_role`
+--
+
+DROP TABLE IF EXISTS `tbl_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_role` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) COLLATE utf8mb4_bin NOT NULL,
+  `create_by` int DEFAULT NULL,
+  `update_by` int DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `description` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_role`
+--
+
+LOCK TABLES `tbl_role` WRITE;
+/*!40000 ALTER TABLE `tbl_role` DISABLE KEYS */;
+INSERT INTO `tbl_role` VALUES (1,'ADMIN',NULL,NULL,NULL,NULL,NULL,NULL),(2,'GUEST',NULL,NULL,NULL,NULL,NULL,NULL),(3,'MANAGER',NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `tbl_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_sale_order`
+--
+
+DROP TABLE IF EXISTS `tbl_sale_order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_sale_order` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `code` varchar(60) COLLATE utf8mb4_bin DEFAULT NULL,
+  `total` decimal(15,2) DEFAULT NULL,
+  `customer_name` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL,
+  `customer_mobile` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
+  `customer_email` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
+  `customer_address` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL,
+  `create_by` int DEFAULT NULL,
+  `update_by` int DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `sale_status` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fk_user_id_idx` (`user_id`),
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_sale_order`
+--
+
+LOCK TABLES `tbl_sale_order` WRITE;
+/*!40000 ALTER TABLE `tbl_sale_order` DISABLE KEYS */;
+INSERT INTO `tbl_sale_order` VALUES (13,1,'2047000001',0.00,'aB','000001','asdasdasd@gmail.com','asdasd',NULL,NULL,NULL,NULL,0,2),(14,1,'205112312',120000.00,'Dung','12312','asdasdasd@gmail.com','asdasd',NULL,NULL,NULL,NULL,0,2),(15,1,'20520123456789',97000.00,'culacgi0ntan','0123456789','abcdzyx027@gmail.com','Ha noi',NULL,NULL,NULL,NULL,1,0),(16,1,'20540986068436',11224.00,'admin_VJp_pro','0986068436','','Ha noi',NULL,NULL,'2024-02-29 14:40:54',NULL,1,2),(17,1,'20540123456789',183600.00,'culacgi0ntan','0123456789','','',NULL,NULL,'2024-02-29 15:23:23',NULL,1,1),(18,1,'20484675674',91800.00,'fsdf','4675674','abcdzyx027@gmail.com','Ha noi',NULL,NULL,'2024-03-22 09:50:34',NULL,1,NULL),(19,1,'20350123987324',308800.00,'da fook','0123987324','','ha noi',NULL,NULL,'2024-04-08 19:15:13',NULL,1,NULL);
+/*!40000 ALTER TABLE `tbl_sale_order` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_sale_order_product`
+--
+
+DROP TABLE IF EXISTS `tbl_sale_order_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_sale_order_product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `sale_order_id` int NOT NULL,
+  `book_id` int NOT NULL,
+  `quantity` int DEFAULT NULL,
+  `create_by` int DEFAULT NULL,
+  `update_by` int DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `description` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_product_id_idx` (`book_id`),
+  KEY `fk_order_id_idx` (`sale_order_id`),
+  CONSTRAINT `fk_book_id` FOREIGN KEY (`book_id`) REFERENCES `tbl_book` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_id` FOREIGN KEY (`sale_order_id`) REFERENCES `tbl_sale_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_sale_order_product`
+--
+
+LOCK TABLES `tbl_sale_order_product` WRITE;
+/*!40000 ALTER TABLE `tbl_sale_order_product` DISABLE KEYS */;
+INSERT INTO `tbl_sale_order_product` VALUES (7,13,3,1,NULL,NULL,NULL,NULL,1,NULL),(8,14,4,1,NULL,NULL,NULL,NULL,1,NULL),(9,15,3,1,NULL,NULL,NULL,NULL,1,NULL),(10,16,10,1,NULL,NULL,NULL,NULL,1,NULL),(11,17,1,2,NULL,NULL,NULL,NULL,1,NULL),(12,18,1,1,NULL,NULL,NULL,NULL,1,NULL),(13,19,1,1,NULL,NULL,NULL,NULL,1,NULL),(14,19,3,1,NULL,NULL,NULL,NULL,1,NULL),(15,19,4,1,NULL,NULL,NULL,NULL,1,NULL);
+/*!40000 ALTER TABLE `tbl_sale_order_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_user`
+--
+
+DROP TABLE IF EXISTS `tbl_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(120) COLLATE utf8mb4_bin NOT NULL,
+  `password` varchar(120) COLLATE utf8mb4_bin NOT NULL,
+  `name` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
+  `mobile` varchar(60) COLLATE utf8mb4_bin DEFAULT NULL,
+  `email` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL,
+  `address` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL,
+  `create_by` int DEFAULT NULL,
+  `update_by` int DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `description` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_create_user_idx` (`create_by`),
+  KEY `fk_user_update_user_idx` (`update_by`),
+  CONSTRAINT `fk_user_create_user` FOREIGN KEY (`create_by`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_update_user` FOREIGN KEY (`update_by`) REFERENCES `tbl_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+LOCK TABLES `tbl_user` WRITE;
+/*!40000 ALTER TABLE `tbl_user` DISABLE KEYS */;
+INSERT INTO `tbl_user` VALUES (1,'hello','$2a$04$iaQObHqwiy3vGY9ToWVZBeFAUY.fRTOrhKcgIR3eD2VUOTrJUnAWy','admin_VJp_pro','0986068436',NULL,NULL,NULL,NULL,NULL,NULL,1,NULL),(2,'culacgi0ntan','$2a$04$GIyAlglWa/EEPQH5Lwo4NO/4nLZmFOSvFWlS90zejXrWvPgggjKgK','culacgi0ntan','0123456789',NULL,NULL,NULL,NULL,NULL,NULL,1,NULL),(3,'aB','$2a$04$GIyAlglWa/EEPQH5Lwo4NO/4nLZmFOSvFWlS90zejXrWvPgggjKgK','a','312312',NULL,NULL,NULL,NULL,NULL,NULL,1,NULL),(4,'abbscc','$2a$04$CL1IgM2sGMqGCCcL5izACuQs8onUqC/HHpHFLmy5OSgEScjQN9UNm','hello world','0949329423',NULL,NULL,NULL,NULL,NULL,NULL,1,NULL);
+/*!40000 ALTER TABLE `tbl_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_user_role`
+--
+
+DROP TABLE IF EXISTS `tbl_user_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_user_role` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `role_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_role_idx` (`user_id`),
+  KEY `fk_role_id_idx` (`role_id`),
+  CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `tbl_role` (`id`),
+  CONSTRAINT `fk_user_role` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_user_role`
+--
+
+LOCK TABLES `tbl_user_role` WRITE;
+/*!40000 ALTER TABLE `tbl_user_role` DISABLE KEYS */;
+INSERT INTO `tbl_user_role` VALUES (1,1,1),(4,2,2),(5,2,3),(6,2,4);
+/*!40000 ALTER TABLE `tbl_user_role` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-22 20:55:53
